@@ -1,23 +1,123 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Komunitas</title>
+    <meta charset="UTF-8" />
+    <title>Anggota Komunitas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      form {
+        margin-bottom: 30px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        padding: 8px;
+        margin: 5px 0;
+        width: calc(100% - 20px);
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <h1>Anggota Komunitas</h1>
+
     <form method="post" action="/add">
-      <input name="name" placeholder="Nama" required />
-      <input name="email" placeholder="Email" required />
-      <input name="role" placeholder="Peran" required />
+      <h3>Tambah Anggota</h3>
+      <input type="text" name="name" placeholder="Nama" required /><br />
+      <input type="email" name="email" placeholder="Email" required /><br />
+      <input type="text" name="role" placeholder="Peran" required /><br />
       <button type="submit">Tambah</button>
     </form>
-    <ul>
-      {% for m in members %}
-      <li>
-        {{ m.name }} - {{ m.email }} - {{ m.role }}
-        <a href="/delete/{{ m.id }}">Hapus</a>
-      </li>
-      {% endfor %}
-    </ul>
+
+    {% if members %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Peran</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in members %}
+        <tr>
+          <td>{{ m.name }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.role }}</td>
+          <td>
+            <a href="/edit/{{ m.id }}">Edit</a> |
+            <a
+              href="/delete/{{ m.id }}"
+              onclick="return confirm('Yakin ingin menghapus data ini?')"
+              >Hapus</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>Tidak ada anggota terdaftar.</p>
+    {% endif %}
   </body>
 </html>

@@ -22,6 +22,18 @@ def add():
     return redirect(url_for('routes.index'))
 
 
+@routes.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    member = Member.query.get(id)
+    if request.method == 'POST':
+        member.name = request.form['name']
+        member.email = request.form['email']
+        member.role = request.form['role']
+        db.session.commit()
+        return redirect(url_for('routes.index'))
+    return render_template('form.html', member=member)
+
+
 @routes.route('/delete/<int:id>')
 def delete(id):
     member = Member.query.get(id)

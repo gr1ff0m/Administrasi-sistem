@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Anggota</title>
+  </head>
+  <body>
+    <h1>Edit Anggota Komunitas</h1>
+    <form method="post">
+      <input
+        name="name"
+        placeholder="Nama"
+        value="{{ member.name }}"
+        required
+      />
+      <input
+        name="email"
+        placeholder="Email"
+        value="{{ member.email }}"
+        required
+      />
+      <input
+        name="role"
+        placeholder="Peran"
+        value="{{ member.role }}"
+        required
+      />
+      <button type="submit">Simpan Perubahan</button>
+    </form>
+    <a href="/">Kembali</a>
+  </body>
+</html>
