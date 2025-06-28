@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5050:5000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:

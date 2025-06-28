@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Komunitas</title>
+  </head>
+  <body>
+    <h1>Anggota Komunitas</h1>
+    <form method="post" action="/add">
+      <input name="name" placeholder="Nama" required />
+      <input name="email" placeholder="Email" required />
+      <input name="role" placeholder="Peran" required />
+      <button type="submit">Tambah</button>
+    </form>
+    <ul>
+      {% for m in members %}
+      <li>
+        {{ m.name }} - {{ m.email }} - {{ m.role }}
+        <a href="/delete/{{ m.id }}">Hapus</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
