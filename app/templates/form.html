@@ -1,31 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>Edit Anggota</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
-    <h1>Edit Anggota Komunitas</h1>
+    <h1>Edit Anggota</h1>
+
     <form method="post">
-      <input
-        name="name"
-        placeholder="Nama"
-        value="{{ member.name }}"
-        required
-      />
-      <input
-        name="email"
-        placeholder="Email"
-        value="{{ member.email }}"
-        required
-      />
-      <input
-        name="role"
-        placeholder="Peran"
-        value="{{ member.role }}"
-        required
-      />
+      <label for="name">Nama:</label>
+      <input name="name" id="name" value="{{ member.name }}" required />
+
+      <label for="email">Email:</label>
+      <input name="email" id="email" value="{{ member.email }}" required />
+
+      <label for="role">Peran:</label>
+      <input name="role" id="role" value="{{ member.role }}" required />
+
       <button type="submit">Simpan Perubahan</button>
     </form>
-    <a href="/">Kembali</a>
+
+    <a class="back-link" href="/">← Kembali ke Daftar Anggota</a>
   </body>
 </html>
